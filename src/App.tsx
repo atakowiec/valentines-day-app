@@ -1,9 +1,10 @@
 import {useEffect, useRef, useState} from 'react'
 import appStyle from "./index.module.scss"
-import heartImage from "./heart.png"
-import heartImage1 from "./heart_1.png"
-import brokenHeart from "./broken-heart.png"
-import danceGif from "./dance1.gif"
+import heartImage from "./assets/heart.png"
+import heartImage1 from "./assets/heart_1.png"
+import background from "./assets/background.png"
+import brokenHeart from "./assets/broken-heart.png"
+import danceGif from "./assets/dance1.gif"
 import seedrandom from 'seedrandom';
 
 function App() {
@@ -61,7 +62,8 @@ function MainContent() {
     }
 
     return (
-        <div className={appStyle.mainContentBox}>
+        <div className={appStyle.mainContentBox}
+             style={{backgroundImage: `url('${background}')`}}>
             <div className={appStyle.content}>
                 {stage < 3 && <>
                     <div className={appStyle.text}>
@@ -108,9 +110,9 @@ function FallingHearts() {
 }
 
 function FallingHeart({id}: { id: number }) {
-    const [x, setX] = useState(id % (window.innerWidth / 100) * 100 + (Math.random() - 0.5) * 50)
+    const [x] = useState(id % (window.innerWidth / 100) * 100 + (Math.random() - 0.5) * 50)
     const [y, setY] = useState(Math.floor(id / (window.innerWidth / 100)) * 100 + (Math.random() - 0.5) * 50 + 100)
-    const [size, setSize] = useState(Math.ceil(Math.random() * 3) * 10 + 10)
+    const [size] = useState(Math.ceil(Math.random() * 3) * 10 + 10)
     const [currentX, setCurrentX] = useState(x)
     const randomRef = useRef(seedrandom("random-" + id).int32() % 150 + 50)
 
